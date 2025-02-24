@@ -1,0 +1,31 @@
+services:
+  db:
+    build: postgres
+    image: learn_clean_arch_fastapi_dev
+    volumes:
+      - $HOME/.postgres/learn_clean_arch_fastapi/data/postgresql:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DBS=learn_clean_arch_fastapi, learn_clean_arch_fastapi_test
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   image: sistema_fly_app
+  #   ports:
+  #     - 8000:8000
+  #   env_file:
+  #     - .env
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: 2
+  #         memory: 4G
+  #     restart_policy:
+  #       condition: on-failure
+  #       delay: 5s
+  #       max_attempts: 3
