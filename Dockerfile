@@ -1,8 +1,8 @@
 FROM python:3.13.2-slim-bookworm
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    POETRY_VIRTUALENVS_IN_PROJECT=true
+  PYTHONDONTWRITEBYTECODE=1 \
+  POETRY_VIRTUALENVS_IN_PROJECT=true
 
 WORKDIR /app/
 
@@ -29,5 +29,5 @@ RUN chown -R sfuser:sfuser /app/
 
 EXPOSE 8000
 
-CMD runuser -u sfuser -- gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app \
+CMD runuser -u sfuser -- gunicorn -w 4 -k uvicorn.workers.UvicornWorker src.app.main:app \
   --bind 0.0.0.0:8000 --forwarded-allow-ips="*" --timeout=120
