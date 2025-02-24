@@ -19,5 +19,5 @@ class UserRepository(ABC):
         pass
 
     @abstractmethod
-    async def index(self) -> list[User]:
+    async def index(self, page: int, page_size: int) -> list[User]:
         pass
