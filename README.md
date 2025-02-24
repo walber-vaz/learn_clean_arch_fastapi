@@ -102,6 +102,7 @@ http://localhost:8000/docs
 ├── Dockerfile
 ├── .editorconfig
 ├── .gitignore
+├── LICENSE
 ├── poetry.lock
 ├── .pre-commit-config.yaml
 ├── pyproject.toml
@@ -122,9 +123,6 @@ http://localhost:8000/docs
 │   └── app
 │       ├── constants.py
 │       ├── main.py
-│       ├── application
-│       │   └── interfaces
-│       │       └── user_service.py
 │       ├── domain
 │       │   ├── entities
 │       │   │   └── user.py
@@ -248,9 +246,9 @@ graph TD
     Dependencies --> UseCases
     Dependencies --> RepositoryImpl
 
-    classDef presentation fill:#FFB6C1,stroke:#333,stroke-width:1px;
-    classDef domain fill:#87CEEB,stroke:#333,stroke-width:1px;
-    classDef infrastructure fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef presentation fill:#FFB6C1,stroke:#111,stroke-width:1px;
+    classDef domain fill:#87CEEB,stroke:#111,stroke-width:1px;
+    classDef infrastructure fill:#98FB98,stroke:#111,stroke-width:1px;
 
     class Controllers,Schemas presentation;
     class Entities,RepositoryInterfaces,UseCases,UseCase domain;
