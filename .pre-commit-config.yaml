@@ -48,10 +48,20 @@ repos:
     hooks:
       - id: pytest
         name: pytest
-        entry: ./.venv/bin/pytest . --cov=src/app -vv -s -x -p no:warnings
+        entry: ./.venv/bin/pytest
         language: system
         exclude: ^migrations/
         types: [python]
-        files: ^.*_test\.py$
-        pass_filenames: true
-        always_run: false
+        pass_filenames: false
+        always_run: true
+        args:
+          [
+            ".",
+            "--cov=src/app",
+            "--cov-report=term",
+            "-vv",
+            "-s",
+            "-x",
+            "-p",
+            "no:warnings",
+          ]
