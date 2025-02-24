@@ -28,7 +28,7 @@ class SqlModelUserRepository(UserRepository):
         result = await self.session.exec(stmt)
         return result.one_or_none()
 
-    async def index(self) -> list[User]:
-        stmt = select(User)
+    async def index(self, page: int, page_size: int) -> list[User]:
+        stmt = select(User).offset((page - 1) * page_size).limit(page_size)
         result = await self.session.exec(stmt)
         return result.all()
