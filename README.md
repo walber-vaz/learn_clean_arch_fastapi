@@ -1,14 +1,14 @@
-# FastAPI Clean Architecture Project
+# Projeto FastAPI com Clean Architecture
 
-A modern web application built with FastAPI, SQLModel, and Clean Architecture principles.
+Uma aplicação web moderna construída com FastAPI, SQLModel e princípios de Clean Architecture.
 
-## Architecture Overview
+## Visão Geral da Arquitetura
 
-This project follows Clean Architecture principles to maintain separation of concerns and ensure testability and maintainability.
+Este projeto segue os princípios da Clean Architecture para manter a separação de responsabilidades e garantir testabilidade e manutenibilidade.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     Presentation Layer                  │
+│                     Camada de Apresentação              │
 │                                                         │
 │  ┌─────────────────┐          ┌───────────────────┐     │
 │  │   Controllers   │          │      Schemas      │     │
@@ -17,182 +17,182 @@ This project follows Clean Architecture principles to maintain separation of con
                                                     │
                                                     ▼
 ┌─────────────────────────────────────────────────────────┐
-│                      Domain Layer                       │
+│                     Camada de Domínio                   │
 │                                                         │
 │  ┌─────────────────┐    ┌───────────────┐               │
-│  │     Entities    │    │  Repositories │               │
-│  └─────────────────┘    │   Interfaces  │               │
+│  │    Entidades    │    │ Interfaces de │               │
+│  └─────────────────┘    │  Repositório  │               │
 │                         └───────────────┘               │
 │  ┌─────────────────────────────────────────────┐        │
-│  │                 Use Cases                   │        │
+│  │                Casos de Uso                 │        │
 │  └─────────────────────────────────────────────┘        │
 └──────────────────────────────┬──────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────┐
-│                   Infrastructure Layer                  │
+│                  Camada de Infraestrutura               │
 │                                                         │
 │  ┌─────────────────┐    ┌───────────────────────┐       │
-│  │   Database      │    │ Repository            │       │
-│  │  Configuration  │    │ Implementations       │       │
+│  │  Configuração   │    │   Implementações de   │       │
+│  │   do Banco      │    │      Repositório      │       │
 │  └─────────────────┘    └───────────────────────┘       │
 │                                                         │
 │  ┌─────────────────────────────────────────────┐        │
-│  │              Dependencies                   │        │
+│  │               Dependências                  │        │
 │  └─────────────────────────────────────────────┘        │
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Features
+## Características
 
-- Clean Architecture design pattern
-- FastAPI for high-performance API development
-- SQLModel for type-safe database operations
-- Docker & Docker Compose for easy deployment
-- Poetry for dependency management
-- PostgreSQL database
+- Padrão de design Clean Architecture
+- FastAPI para desenvolvimento de API de alto desempenho
+- SQLModel para operações de banco de dados com segurança de tipos
+- Docker e Docker Compose para fácil implantação
+- Poetry para gerenciamento de dependências
+- Banco de dados PostgreSQL
 
-## Getting Started
+## Primeiros Passos
 
-### Prerequisites
+### Pré-requisitos
 
 - Python 3.10+
-- Docker and Docker Compose
+- Docker e Docker Compose
 - Poetry
 
-### Installation
+### Instalação
 
-1. Clone the repository:
+1. Clone o repositório:
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone <url-do-repositório>
+cd <diretório-do-projeto>
 ```
 
-2. Install dependencies:
+2. Instale as dependências:
 
 ```bash
 poetry install
 ```
 
-3. Start the development environment:
+3. Inicie o ambiente de desenvolvimento:
 
 ```bash
 docker-compose up -d
 ```
 
-4. Run the application:
+4. Execute a aplicação:
 
 ```bash
 poetry run uvicorn src.app.main:app --reload
 ```
 
-5. Visit the API documentation:
+5. Acesse a documentação da API:
 
 ```
 http://localhost:8000/docs
 ```
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 .
-├── compose.yml            # Docker Compose configuration
-├── Dockerfile             # Docker container configuration
-├── poetry.lock            # Poetry lock file
-├── pyproject.toml         # Poetry dependencies and config
-├── postgres/              # PostgreSQL Docker configuration
+├── compose.yml            # Configuração do Docker Compose
+├── Dockerfile             # Configuração do container Docker
+├── poetry.lock            # Arquivo de lock do Poetry
+├── pyproject.toml         # Dependências e configuração do Poetry
+├── postgres/              # Configuração Docker do PostgreSQL
 └── src/
     └── app/
-        ├── main.py        # Application entry point
-        ├── domain/        # Business logic and rules
-        │   ├── entities/  # Business objects
-        │   ├── repositories/ # Abstract repository interfaces
-        │   └── use_cases/ # Business use cases
-        ├── infrastructure/ # External interfaces
-        │   ├── config/    # Configuration (database, etc.)
-        │   ├── dependencies/ # Dependency injection
-        │   └── repositories/ # Repository implementations
-        └── presentation/  # API layer
-            ├── controllers/ # API endpoints
-            └── schemas/   # Request/Response models
+        ├── main.py        # Ponto de entrada da aplicação
+        ├── domain/        # Lógica de negócio e regras
+        │   ├── entities/  # Objetos de negócio
+        │   ├── repositories/ # Interfaces abstratas de repositório
+        │   └── use_cases/ # Casos de uso de negócio
+        ├── infrastructure/ # Interfaces externas
+        │   ├── config/    # Configuração (banco de dados, etc.)
+        │   ├── dependencies/ # Injeção de dependências
+        │   └── repositories/ # Implementações de repositório
+        └── presentation/  # Camada de API
+            ├── controllers/ # Endpoints de API
+            └── schemas/   # Modelos de Requisição/Resposta
 ```
 
-## Clean Architecture Layers
+## Camadas da Clean Architecture
 
-### Domain Layer
+### Camada de Domínio
 
-The core of the application, containing:
+O núcleo da aplicação, contendo:
 
-- **Entities**: Business objects
-- **Repository Interfaces**: Abstract interfaces for data access
-- **Use Cases**: Application-specific business rules
+- **Entidades**: Objetos de negócio
+- **Interfaces de Repositório**: Interfaces abstratas para acesso a dados
+- **Casos de Uso**: Regras de negócio específicas da aplicação
 
-### Infrastructure Layer
+### Camada de Infraestrutura
 
-Handles external concerns:
+Lida com preocupações externas:
 
-- **Repository Implementations**: Concrete implementations of repository interfaces
-- **Database Configuration**: Connection setup and session management
-- **Dependencies**: Dependency injection for use cases and repositories
+- **Implementações de Repositório**: Implementações concretas das interfaces de repositório
+- **Configuração de Banco de Dados**: Configuração de conexão e gerenciamento de sessão
+- **Dependências**: Injeção de dependências para casos de uso e repositórios
 
-### Presentation Layer
+### Camada de Apresentação
 
-Handles HTTP requests and responses:
+Lida com requisições e respostas HTTP:
 
-- **Controllers**: API endpoints
-- **Schemas**: Request/Response data models
+- **Controllers**: Endpoints de API
+- **Schemas**: Modelos de dados para Requisição/Resposta
 
-## Development
+## Desenvolvimento
 
-### Adding a New Entity
+### Adicionando uma Nova Entidade
 
-1. Create entity in `domain/entities/`
-2. Define repository interface in `domain/repositories/`
-3. Implement use cases in `domain/use_cases/`
-4. Add repository implementation in `infrastructure/repositories/`
-5. Add dependencies in `infrastructure/dependencies/`
-6. Create schemas in `presentation/schemas/`
-7. Add controller in `presentation/controllers/`
+1. Crie a entidade em `domain/entities/`
+2. Defina a interface do repositório em `domain/repositories/`
+3. Implemente os casos de uso em `domain/use_cases/`
+4. Adicione a implementação do repositório em `infrastructure/repositories/`
+5. Adicione as dependências em `infrastructure/dependencies/`
+6. Crie os schemas em `presentation/schemas/`
+7. Adicione o controller em `presentation/controllers/`
 
-### Running Tests
+### Executando Testes
 
 ```bash
 poetry run pytest
 ```
 
-## Deployment
+## Implantação
 
-The application is containerized for easy deployment:
+A aplicação está containerizada para fácil implantação:
 
 ```bash
-# Build and start containers
+# Construir e iniciar containers
 docker-compose up --build
 
-# Run in detached mode
+# Executar em modo desanexado
 docker-compose up -d
 ```
 
-## Graph
+## Gráfico
 
 ```mermaid
 graph TD
-    subgraph "Presentation Layer"
+    subgraph "Camada de Apresentação"
         Controllers["Controllers\nuser_controller.py"]
         Schemas["Schemas\nrequest.py, response.py"]
     end
 
-    subgraph "Domain Layer"
-        Entities["Entities\nuser.py"]
-        RepositoryInterfaces["Repository Interfaces\nuser_repository.py"]
-        UseCases["Use Cases\ncreate_user.py\nget_user.py\nlist_users.py"]
-        UseCase["Use Case Interface\nuse_case.py"]
+    subgraph "Camada de Domínio"
+        Entities["Entidades\nuser.py"]
+        RepositoryInterfaces["Interfaces de Repositório\nuser_repository.py"]
+        UseCases["Casos de Uso\ncreate_user.py\nget_user.py\nlist_users.py"]
+        UseCase["Interface de Caso de Uso\nuse_case.py"]
     end
 
-    subgraph "Infrastructure Layer"
-        RepositoryImpl["Repository Implementation\nsqlmodel_user_repository.py"]
-        DBConfig["Database Config\ndatabase.py"]
-        Dependencies["Dependencies\nuser_dependencies.py"]
+    subgraph "Camada de Infraestrutura"
+        RepositoryImpl["Implementação de Repositório\nsqlmodel_user_repository.py"]
+        DBConfig["Config do Banco de Dados\ndatabase.py"]
+        Dependencies["Dependências\nuser_dependencies.py"]
     end
 
     Controllers --> Schemas
