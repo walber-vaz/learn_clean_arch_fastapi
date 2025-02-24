@@ -4,11 +4,9 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-DATABASE_URL = (
-    "postgresql+psycopg://docker:docker@localhost:5432/learn_clean_arch_fastapi"
-)
+from app.infrastructure.config.settings import settings
 
-engine = create_async_engine(DATABASE_URL, echo=True, future=True)
+engine = create_async_engine(settings.DATABASE_URL, echo=True, future=True)
 
 
 async def init() -> None:
