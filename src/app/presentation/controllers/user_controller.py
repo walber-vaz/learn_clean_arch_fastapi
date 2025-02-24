@@ -1,23 +1,24 @@
 from http import HTTPStatus
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.infrastructure.dependencies.user_dependencies import (
     get_create_user_use_case,
     get_get_user_use_case,
     get_list_users_use_case,
 )
+from app.presentation.schemas.common.pagination import PaginatedResponse
 from app.presentation.schemas.user.request import UserCreateRequest
 from app.presentation.schemas.user.response import UserResponse
 from app.use_cases.user.create_user import CreateUserUseCase
 from app.use_cases.user.get_user import GetUserInput, GetUserUseCase
-from app.use_cases.user.list_users import ListUsersUseCase
+from app.use_cases.user.list_users import ListUsersInput, ListUsersUseCase
 
 router = APIRouter()
 
 
-@router.post('/', response_model=UserResponse)
+@router.post('/', response_model=UserResponse, status_code=HTTPStatus.CREATED)
 async def create_user(
     user_request: UserCreateRequest,
     use_case: CreateUserUseCase = Depends(get_create_user_use_case),
@@ -52,13 +53,20 @@ async def get_user(
     )
 
 
-@router.get('/', response_model=list[UserResponse])
+@router.get('/', response_model=PaginatedResponse[UserResponse])
 async def list_users(
+    page: int = Query(1, ge=1, description='Page number'),
+    page_size: int = Query(10, ge=1, le=100, description='Page size'),
     use_case: ListUsersUseCase = Depends(get_list_users_use_case),
 ):
-    data = await use_case.execute()
+    data = await use_case.execute(
+        input_data=ListUsersInput(
+            page=page,
+            page_size=page_size,
+        )
+    )
 
-    return [
+    users_list = [
         UserResponse(
             id=user.id,
             name=user.name,
@@ -67,3 +75,13 @@ async def list_users(
         )
         for user in data.users
     ]
+
+    pagination = PaginatedResponse(
+        page=page,
+        page_size=page_size,
+        items=users_list,
+        total=data.total,
+        total_pages=data.total_pages,
+    )
+
+    return pagination
