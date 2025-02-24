@@ -5,8 +5,8 @@ from fastapi import HTTPException
 
 from app.domain.entities.user import User
 from app.domain.repositories.user_repository import UserRepository
-from app.domain.use_cases.interfaces.use_case import UseCase
 from app.infrastructure.security.password import get_password_hash
+from app.use_cases.interfaces.use_case import UseCase
 
 
 @dataclass
