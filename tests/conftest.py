@@ -6,8 +6,8 @@ from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from sqlmodel import SQLModel
 
+from app.domain import entities
 from app.infrastructure.config.database import get_session
 from app.infrastructure.config.settings import settings
 from app.main import app
@@ -39,12 +39,16 @@ def event_loop():
 @pytest_asyncio.fixture(scope='function')
 async def setup_database():
     async with test_engine.begin() as conn:
-        await conn.run_sync(SQLModel.metadata.create_all, bind=test_engine)
+        await conn.run_sync(
+            entities.SQLModel.metadata.create_all, bind=test_engine
+        )
 
     yield
 
     async with test_engine.begin() as conn:
-        await conn.run_sync(SQLModel.metadata.drop_all, bind=test_engine)
+        await conn.run_sync(
+            entities.SQLModel.metadata.drop_all, bind=test_engine
+        )
 
     await test_engine.dispose()
 
