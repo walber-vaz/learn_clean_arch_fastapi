@@ -26,15 +26,19 @@ class CreateUserUseCase(UseCase[CreateUserInput, CreateUserOutput]):
         self.user_repository = user_repository
 
     async def execute(self, input_data: CreateUserInput) -> CreateUserOutput:
-        existing_user = await self.user_repository.find_by_email(input_data.email)
+        existing_user = await self.user_repository.find_by_email(
+            input_data.email
+        )
         if existing_user:
             raise HTTPException(
-                status_code=HTTPStatus.NOT_FOUND, detail="User already exists"
+                status_code=HTTPStatus.NOT_FOUND, detail='User already exists'
             )
 
         hashed_password = get_password_hash(input_data.password)
         user = User(
-            name=input_data.name, email=input_data.email, password=hashed_password
+            name=input_data.name,
+            email=input_data.email,
+            password=hashed_password,
         )
 
         created_user = await self.user_repository.create(user)
