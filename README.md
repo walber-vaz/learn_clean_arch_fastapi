@@ -65,8 +65,8 @@ Este projeto segue os princípios da Clean Architecture para manter a separaçã
 1. Clone o repositório:
 
 ```bash
-git clone <url-do-repositório>
-cd <diretório-do-projeto>
+git clone https://github.com/walber-vaz/learn_clean_arch_fastapi.git
+cd learn_clean_arch_fastapi
 ```
 
 2. Instale as dependências:
@@ -97,25 +97,67 @@ http://localhost:8000/docs
 
 ```
 .
-├── compose.yml            # Configuração do Docker Compose
-├── Dockerfile             # Configuração do container Docker
-├── poetry.lock            # Arquivo de lock do Poetry
-├── pyproject.toml         # Dependências e configuração do Poetry
-├── postgres/              # Configuração Docker do PostgreSQL
-└── src/
-    └── app/
-        ├── main.py        # Ponto de entrada da aplicação
-        ├── domain/        # Lógica de negócio e regras
-        │   ├── entities/  # Objetos de negócio
-        │   ├── repositories/ # Interfaces abstratas de repositório
-        │   └── use_cases/ # Casos de uso de negócio
-        ├── infrastructure/ # Interfaces externas
-        │   ├── config/    # Configuração (banco de dados, etc.)
-        │   ├── dependencies/ # Injeção de dependências
-        │   └── repositories/ # Implementações de repositório
-        └── presentation/  # Camada de API
-            ├── controllers/ # Endpoints de API
-            └── schemas/   # Modelos de Requisição/Resposta
+├── alembic.ini
+├── compose.yml
+├── Dockerfile
+├── .editorconfig
+├── .gitignore
+├── poetry.lock
+├── .pre-commit-config.yaml
+├── pyproject.toml
+├── .python-version
+├── README.md
+├── requirements-dev.txt
+├── requirements.txt
+├── migrations
+│   ├── env.py
+│   ├── README
+│   ├── script.py.mako
+│   └── versions
+│       └── b4d2e3210ead_init.py
+├── postgres
+│   ├── create-databases.sh
+│   └── Dockerfile
+├── src
+│   └── app
+│       ├── constants.py
+│       ├── main.py
+│       ├── application
+│       │   └── interfaces
+│       │       └── user_service.py
+│       ├── domain
+│       │   ├── entities
+│       │   │   └── user.py
+│       │   ├── repositories
+│       │   │   └── user_repository.py
+│       │   └── use_cases
+│       │       ├── interfaces
+│       │       │   └── use_case.py
+│       │       └── user
+│       │           ├── create_user.py
+│       │           ├── get_user.py
+│       │           └── list_users.py
+│       ├── infrastructure
+│       │   ├── config
+│       │   │   ├── database.py
+│       │   │   └── settings.py
+│       │   ├── dependencies
+│       │   │   └── user_dependencies.py
+│       │   ├── repositories
+│       │   │   └── sqlmodel_user_repository.py
+│       │   └── security
+│       │       └── password.py
+│       └── presentation
+│           ├── controllers
+│           │   └── user_controller.py
+│           └── schemas
+│               ├── common
+│               │   └── pagination.py
+│               └── user
+│                   ├── request.py
+│                   └── response.py
+└── tests
+
 ```
 
 ## Camadas da Clean Architecture
