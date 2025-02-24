@@ -7,21 +7,31 @@ from app.use_cases.interfaces.use_case import UseCase
 
 @dataclass
 class ListUsersInput:
-    pass
+    page: int
+    page_size: int
 
 
 @dataclass
 class ListUsersOutput:
     users: list[User]
+    total: int
+    total_pages: int
 
 
 class ListUsersUseCase(UseCase[ListUsersInput, ListUsersOutput]):
     def __init__(self, user_repository: UserRepository):
         self.user_repository = user_repository
 
-    async def execute(
-        self, input_data: ListUsersInput = None
-    ) -> ListUsersOutput:
-        users = await self.user_repository.index()
+    async def execute(self, input_data: ListUsersInput) -> ListUsersOutput:
+        users = await self.user_repository.index(
+            input_data.page, input_data.page_size
+        )
+        total = len(users)
 
-        return ListUsersOutput(users=users)
+        total_pages = total // input_data.page_size
+        if total % input_data.page_size != 0:
+            total_pages += 1
+
+        return ListUsersOutput(
+            users=users, total=total, total_pages=total_pages
+        )
