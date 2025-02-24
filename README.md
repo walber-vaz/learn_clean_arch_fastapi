@@ -256,3 +256,7 @@ graph TD
     class Entities,RepositoryInterfaces,UseCases,UseCase domain;
     class RepositoryImpl,DBConfig,Dependencies infrastructure;
 ```
+
+## Licença
+
+Distribuído sob a licença BSD-3. Veja `LICENSE` para mais informações.
