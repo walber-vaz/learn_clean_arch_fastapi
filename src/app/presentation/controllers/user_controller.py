@@ -17,7 +17,7 @@ from app.presentation.schemas.user.response import UserResponse
 router = APIRouter()
 
 
-@router.post("/users", response_model=UserResponse)
+@router.post('/users', response_model=UserResponse)
 async def create_user(
     user_request: UserCreateRequest,
     use_case: CreateUserUseCase = Depends(get_create_user_use_case),
@@ -35,7 +35,7 @@ async def create_user(
         raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail=str(e))
 
 
-@router.get("/users/{user_id}", response_model=UserResponse)
+@router.get('/users/{user_id}', response_model=UserResponse)
 async def get_user(
     user_id: UUID, use_case: GetUserUseCase = Depends(get_get_user_use_case)
 ):
@@ -52,13 +52,18 @@ async def get_user(
     )
 
 
-@router.get("/users", response_model=list[UserResponse])
-async def list_users(use_case: ListUsersUseCase = Depends(get_list_users_use_case)):
+@router.get('/users', response_model=list[UserResponse])
+async def list_users(
+    use_case: ListUsersUseCase = Depends(get_list_users_use_case),
+):
     data = await use_case.execute()
 
     return [
         UserResponse(
-            id=user.id, name=user.name, email=user.email, created_at=user.created_at
+            id=user.id,
+            name=user.name,
+            email=user.email,
+            created_at=user.created_at,
         )
         for user in data.users
     ]
