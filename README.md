@@ -214,6 +214,20 @@ http://localhost:8000/docs
 │                   ├── request.py
 │                   └── response.py
 └── tests
+    ├── conftest.py
+    ├── mocks
+    │   └── user.py
+    └── unit
+        ├── domain
+        │   └── entities
+        │       └── test_user.py
+        ├── infrastructure
+        │   └── security
+        │       └── test_password.py
+        └── use_cases
+            └── user
+                └── test_create_user.py
+
 
 ```
 
