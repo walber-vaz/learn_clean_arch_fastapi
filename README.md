@@ -217,42 +217,53 @@ docker-compose up -d
 
 ```mermaid
 graph TD
-    subgraph "Camada de Apresentação"
+    subgraph "Presentation Layer"
+        direction TB
         Controllers["Controllers\nuser_controller.py"]
-        Schemas["Schemas\nrequest.py, response.py"]
+        Schemas["Schemas\nuser/request.py\nuser/response.py"]
     end
 
-    subgraph "Camada de Domínio"
-        Entities["Entidades\nuser.py"]
-        RepositoryInterfaces["Interfaces de Repositório\nuser_repository.py"]
-        UseCases["Casos de Uso\ncreate_user.py\nget_user.py\nlist_users.py"]
-        UseCase["Interface de Caso de Uso\nuse_case.py"]
+    subgraph "Use Cases Layer"
+        direction TB
+        UseCases["User Use Cases\ncreate_user.py\nget_user.py\nlist_users.py"]
+        UseCaseInterface["Use Case Interface\ninterfaces/use_case.py"]
     end
 
-    subgraph "Camada de Infraestrutura"
-        RepositoryImpl["Implementação de Repositório\nsqlmodel_user_repository.py"]
-        DBConfig["Config do Banco de Dados\ndatabase.py"]
-        Dependencies["Dependências\nuser_dependencies.py"]
+    subgraph "Domain Layer"
+        direction TB
+        Entities["Entities\nuser.py"]
+        Repositories["Repository Interfaces\nuser_repository.py"]
+    end
+
+    subgraph "Infrastructure Layer"
+        direction TB
+        DbConfig["Database Config\ndatabase.py\nsettings.py"]
+        RepImpl["Repository Implementation\nsqlmodel_user_repository.py"]
+        Dependencies["Dependencies\nuser_dependencies.py"]
+        Security["Security\npassword.py"]
     end
 
     Controllers --> Schemas
     Controllers --> UseCases
-    UseCases --> UseCase
-    UseCases --> RepositoryInterfaces
+    UseCases --> UseCaseInterface
     UseCases --> Entities
-    RepositoryInterfaces --> Entities
-    RepositoryImpl --> RepositoryInterfaces
-    RepositoryImpl --> DBConfig
+    UseCases --> Repositories
+    RepImpl --> Repositories
+    RepImpl --> DbConfig
+    RepImpl --> Entities
+    Dependencies --> RepImpl
     Dependencies --> UseCases
-    Dependencies --> RepositoryImpl
+    Security --> UseCases
 
-    classDef presentation fill:#FFB6C1,stroke:#111,stroke-width:1px;
-    classDef domain fill:#87CEEB,stroke:#111,stroke-width:1px;
-    classDef infrastructure fill:#98FB98,stroke:#111,stroke-width:1px;
+    classDef presentation fill:#FFB6C1,stroke:#fff,stroke-width:1px;
+    classDef usecases fill:#FFA07A,stroke:#fff,stroke-width:1px;
+    classDef domain fill:#87CEEB,stroke:#fff,stroke-width:1px;
+    classDef infrastructure fill:#98FB98,stroke:#fff,stroke-width:1px;
 
     class Controllers,Schemas presentation;
-    class Entities,RepositoryInterfaces,UseCases,UseCase domain;
-    class RepositoryImpl,DBConfig,Dependencies infrastructure;
+    class UseCases,UseCaseInterface usecases;
+    class Entities,Repositories domain;
+    class DbConfig,RepImpl,Dependencies,Security infrastructure;
 ```
 
 ## Licença
