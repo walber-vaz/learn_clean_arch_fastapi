@@ -1,5 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from app.constants import Environment
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -9,6 +11,7 @@ class Settings(BaseSettings):
         extra='allow',
     )
 
+    ENVIRONMENT: Environment = Environment.LOCAL
     DATABASE_URL: str
     API_PREFIX: str = '/v1'
 
