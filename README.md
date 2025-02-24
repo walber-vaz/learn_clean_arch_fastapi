@@ -51,6 +51,57 @@ Este projeto segue os princípios da Clean Architecture para manter a separaçã
 └─────────────────────────────────────────────────────────┘
 ```
 
+### Test coverage
+
+Os estão em desenvolvimento, mas já é possível ver a cobertura de testes.
+
+```
+tests/unit/domain/entities/test_user.py::test_user_entities_creation PASSED
+tests/unit/infrastructure/security/test_password.py::test_password_hash PASSED
+tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_success PASSED
+tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_email_already_exists PASSED
+
+---------- coverage: platform linux, python 3.13.2-final-0 -----------
+Name                                                              Stmts   Miss  Cover
+-------------------------------------------------------------------------------------
+src/app/__init__.py                                                   0      0   100%
+src/app/constants.py                                                 15      3    80%
+src/app/domain/__init__.py                                            0      0   100%
+src/app/domain/entities/__init__.py                                   3      0   100%
+src/app/domain/entities/user.py                                      14      0   100%
+src/app/domain/repositories/__init__.py                               0      0   100%
+src/app/domain/repositories/user_repository.py                       17      4    76%
+src/app/infrastructure/__init__.py                                    0      0   100%
+src/app/infrastructure/config/__init__.py                             0      0   100%
+src/app/infrastructure/config/database.py                            12      3    75%
+src/app/infrastructure/config/settings.py                             8      0   100%
+src/app/infrastructure/dependencies/__init__.py                       0      0   100%
+src/app/infrastructure/dependencies/user_dependencies.py             15      4    73%
+src/app/infrastructure/repositories/__init__.py                       0      0   100%
+src/app/infrastructure/repositories/sqlmodel_user_repository.py      26     14    46%
+src/app/infrastructure/security/__init__.py                           0      0   100%
+src/app/infrastructure/security/password.py                           6      0   100%
+src/app/main.py                                                       5      0   100%
+src/app/presentation/__init__.py                                      0      0   100%
+src/app/presentation/controllers/__init__.py                          0      0   100%
+src/app/presentation/controllers/user_controller.py                  30     13    57%
+src/app/presentation/schemas/__init__.py                              0      0   100%
+src/app/presentation/schemas/common/__init__.py                       0      0   100%
+src/app/presentation/schemas/common/pagination.py                    13      0   100%
+src/app/presentation/schemas/user/__init__.py                         0      0   100%
+src/app/presentation/schemas/user/request.py                         57     34    40%
+src/app/presentation/schemas/user/response.py                        10      0   100%
+src/app/use_cases/__init__.py                                         0      0   100%
+src/app/use_cases/interfaces/__init__.py                              0      0   100%
+src/app/use_cases/interfaces/use_case.py                              8      1    88%
+src/app/use_cases/user/__init__.py                                    0      0   100%
+src/app/use_cases/user/create_user.py                                26      0   100%
+src/app/use_cases/user/get_user.py                                   18      3    83%
+src/app/use_cases/user/list_users.py                                 23      7    70%
+-------------------------------------------------------------------------------------
+TOTAL                                                               306     86    72%
+```
+
 ## Características
 
 - Padrão de design Clean Architecture
