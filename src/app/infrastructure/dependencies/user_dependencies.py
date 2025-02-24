@@ -1,13 +1,13 @@
 from fastapi import Depends
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.domain.use_cases.user.create_user import CreateUserUseCase
-from app.domain.use_cases.user.get_user import GetUserUseCase
-from app.domain.use_cases.user.list_users import ListUsersUseCase
 from app.infrastructure.config.database import get_session
 from app.infrastructure.repositories.sqlmodel_user_repository import (
     SqlModelUserRepository,
 )
+from app.use_cases.user.create_user import CreateUserUseCase
+from app.use_cases.user.get_user import GetUserUseCase
+from app.use_cases.user.list_users import ListUsersUseCase
 
 
 def get_user_repository(

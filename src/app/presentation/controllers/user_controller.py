@@ -3,9 +3,6 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.domain.use_cases.user.create_user import CreateUserUseCase
-from app.domain.use_cases.user.get_user import GetUserInput, GetUserUseCase
-from app.domain.use_cases.user.list_users import ListUsersUseCase
 from app.infrastructure.dependencies.user_dependencies import (
     get_create_user_use_case,
     get_get_user_use_case,
@@ -13,6 +10,9 @@ from app.infrastructure.dependencies.user_dependencies import (
 )
 from app.presentation.schemas.user.request import UserCreateRequest
 from app.presentation.schemas.user.response import UserResponse
+from app.use_cases.user.create_user import CreateUserUseCase
+from app.use_cases.user.get_user import GetUserInput, GetUserUseCase
+from app.use_cases.user.list_users import ListUsersUseCase
 
 router = APIRouter()
 
