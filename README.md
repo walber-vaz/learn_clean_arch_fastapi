@@ -56,7 +56,7 @@ Este projeto segue os princípios da Clean Architecture para manter a separaçã
 
 ### Pré-requisitos
 
-- Python 3.10+
+- Python 3.13+
 - Docker e Docker Compose
 - Poetry
 
