@@ -16,6 +16,7 @@ user_mock = MockUser()
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(1)
 async def test_create_user_endpoint():
     now = datetime.now()
 
@@ -56,6 +57,7 @@ async def test_create_user_endpoint():
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(2)
 async def test_create_user_endpoint_value_error():
     request = UserCreateRequest(
         name=user_mock.name,

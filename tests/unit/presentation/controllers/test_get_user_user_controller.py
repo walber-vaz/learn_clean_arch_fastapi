@@ -16,6 +16,7 @@ user_mock = MockUser()
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(1)
 async def test_get_user_success():
     now = datetime.now()
 
@@ -54,6 +55,7 @@ async def test_get_user_success():
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(2)
 async def test_get_user_not_found():
     user_id = uuid4()
 

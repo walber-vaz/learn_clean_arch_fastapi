@@ -9,6 +9,7 @@ from app.use_cases.user.create_user import CreateUserUseCase
 from tests.mocks.user import User as MockUser
 
 
+@pytest.mark.order(1)
 async def test_create_user_use_case_success():
     mock_repo = AsyncMock()
     mock_repo.find_by_email.return_value = None
@@ -35,6 +36,7 @@ async def test_create_user_use_case_success():
     mock_repo.create.assert_called_once()
 
 
+@pytest.mark.order(2)
 async def test_create_user_use_case_email_already_exists():
     mock_repo = AsyncMock()
     mock_repo.find_by_email.return_value = User()

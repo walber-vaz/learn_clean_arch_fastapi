@@ -10,6 +10,7 @@ user_mock = UserMock()
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(1)
 async def test_create_user(db_session):
     repository = SqlModelUserRepository(db_session)
     user = User(
@@ -34,6 +35,7 @@ async def test_create_user(db_session):
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(2)
 async def test_find_by_email(db_session):
     repository = SqlModelUserRepository(db_session)
     user = User(
@@ -54,6 +56,7 @@ async def test_find_by_email(db_session):
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(3)
 async def test_list_users(db_session):
     repository = SqlModelUserRepository(db_session)
     user = User(

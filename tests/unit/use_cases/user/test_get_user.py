@@ -9,6 +9,7 @@ from tests.mocks.user import User as MockUser
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(1)
 async def test_get_user_use_case_success():
     mock_repo = AsyncMock()
 
@@ -38,6 +39,7 @@ async def test_get_user_use_case_success():
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(2)
 async def test_get_user_use_case_user_not_found():
     mock_repo = AsyncMock()
 

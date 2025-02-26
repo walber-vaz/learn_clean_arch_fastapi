@@ -15,6 +15,7 @@ user_mock = MockUser()
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(1)
 async def test_list_users_endpoint():
     now = datetime.now()
 
@@ -73,6 +74,7 @@ async def test_list_users_endpoint():
 
 
 @pytest.mark.asyncio
+@pytest.mark.order(2)
 async def test_list_users_empty():
     page = 1
     page_size = 10
