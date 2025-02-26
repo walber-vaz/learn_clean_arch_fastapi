@@ -8,7 +8,7 @@ faker = Faker('pt_BR')
 
 @dataclass
 class User:
-    name: str = faker.name()
+    name: str = f'{faker.first_name()} {faker.last_name()}'
     email: str = faker.email()
     password: str = faker.password(
         length=8,
