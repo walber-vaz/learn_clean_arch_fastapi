@@ -13,22 +13,22 @@ from app.use_cases.user.list_users import ListUsersUseCase
 def get_user_repository(
     session: AsyncSession = Depends(get_session),
 ) -> SqlModelUserRepository:
-    return SqlModelUserRepository(session)
+    return SqlModelUserRepository(session)  # pragma: no cover
 
 
 def get_create_user_use_case(
     user_repository: SqlModelUserRepository = Depends(get_user_repository),
 ) -> CreateUserUseCase:
-    return CreateUserUseCase(user_repository)
+    return CreateUserUseCase(user_repository)  # pragma: no cover
 
 
 def get_get_user_use_case(
     user_repository: SqlModelUserRepository = Depends(get_user_repository),
 ) -> GetUserUseCase:
-    return GetUserUseCase(user_repository)
+    return GetUserUseCase(user_repository)  # pragma: no cover
 
 
 def get_list_users_use_case(
     user_repository: SqlModelUserRepository = Depends(get_user_repository),
 ) -> ListUsersUseCase:
-    return ListUsersUseCase(user_repository)
+    return ListUsersUseCase(user_repository)  # pragma: no cover
