@@ -6,5 +6,5 @@ from uuid import UUID, uuid4
 class User:
     name: str = 'Test User'
     email: str = 'email@email.com'
-    password: str = '12345678'
+    password: str = 'Password1!'
     id: UUID = uuid4()
