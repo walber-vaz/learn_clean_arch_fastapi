@@ -8,4 +8,4 @@ Output = TypeVar('Output')
 class UseCase(Generic[Input, Output], ABC):
     @abstractmethod
     async def execute(self, input_data: Input) -> Output:
-        pass
+        pass  # pragma: no cover

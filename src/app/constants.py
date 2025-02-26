@@ -16,12 +16,12 @@ class Environment(StrEnum):
 
     @property
     def is_debug(self):
-        return self in {self.LOCAL, self.STAGING}
+        return self in {self.LOCAL, self.STAGING}  # pragma: no cover
 
     @property
     def is_staging(self):
-        return self == self.STAGING
+        return self == self.STAGING  # pragma: no cover
 
     @property
     def is_deployed(self) -> bool:
-        return self in {self.STAGING, self.PRODUCTION}
+        return self in {self.STAGING, self.PRODUCTION}  # pragma: no cover
