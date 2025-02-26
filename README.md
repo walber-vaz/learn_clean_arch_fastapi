@@ -218,15 +218,8 @@ http://localhost:8000/docs
 │       ├── domain
 │       │   ├── entities
 │       │   │   └── user.py
-│       │   ├── repositories
-│       │   │   └── user_repository.py
-│       │   └── use_cases
-│       │       ├── interfaces
-│       │       │   └── use_case.py
-│       │       └── user
-│       │           ├── create_user.py
-│       │           ├── get_user.py
-│       │           └── list_users.py
+│       │   └── repositories
+│       │       └── user_repository.py
 │       ├── infrastructure
 │       │   ├── config
 │       │   │   ├── database.py
@@ -237,15 +230,22 @@ http://localhost:8000/docs
 │       │   │   └── sqlmodel_user_repository.py
 │       │   └── security
 │       │       └── password.py
-│       └── presentation
-│           ├── controllers
-│           │   └── user_controller.py
-│           └── schemas
-│               ├── common
-│               │   └── pagination.py
-│               └── user
-│                   ├── request.py
-│                   └── response.py
+│       ├── presentation
+│       │   ├── controllers
+│       │   │   └── user_controller.py
+│       │   └── schemas
+│       │       ├── common
+│       │       │   └── pagination.py
+│       │       └── user
+│       │           ├── request.py
+│       │           └── response.py
+│       └── use_cases
+│           ├── interfaces
+│           │   └── use_case.py
+│           └── user
+│               ├── create_user.py
+│               ├── get_user.py
+│               └── list_users.py
 └── tests
     ├── conftest.py
     ├── mocks
@@ -255,13 +255,17 @@ http://localhost:8000/docs
         │   └── entities
         │       └── test_user.py
         ├── infrastructure
+        │   ├── repositories
+        │   │   └── test_sqlmodel_user_repository.py
         │   └── security
         │       └── test_password.py
+        ├── presentation
+        │   └── schemas
+        │       └── user
+        │           └── test_request.py
         └── use_cases
             └── user
                 └── test_create_user.py
-
-
 ```
 
 ## Camadas da Clean Architecture
