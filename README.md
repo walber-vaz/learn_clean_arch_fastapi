@@ -63,10 +63,11 @@ cachedir: .pytest_cache
 configfile: pyproject.toml
 testpaths: tests
 plugins: anyio-4.8.0, cov-6.0.0, asyncio-0.25.3
-asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=auto
-collected 24 items
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=session
+collected 25 items
 
 tests/unit/domain/entities/test_user.py::test_user_entities_creation PASSED
+tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_create_user PASSED
 tests/unit/infrastructure/security/test_password.py::test_password_hash PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_valid_data PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_invalid_name_characters PASSED
@@ -108,7 +109,7 @@ src/app/infrastructure/config/settings.py                             8      0  
 src/app/infrastructure/dependencies/__init__.py                       0      0   100%
 src/app/infrastructure/dependencies/user_dependencies.py             15      4    73%
 src/app/infrastructure/repositories/__init__.py                       0      0   100%
-src/app/infrastructure/repositories/sqlmodel_user_repository.py      26     14    46%
+src/app/infrastructure/repositories/sqlmodel_user_repository.py      26      6    77%
 src/app/infrastructure/security/__init__.py                           0      0   100%
 src/app/infrastructure/security/password.py                           6      0   100%
 src/app/main.py                                                       5      0   100%
@@ -129,8 +130,7 @@ src/app/use_cases/user/create_user.py                                26      0  
 src/app/use_cases/user/get_user.py                                   18      3    83%
 src/app/use_cases/user/list_users.py                                 23      7    70%
 -------------------------------------------------------------------------------------
-TOTAL                                                               294     52    82%
-
+TOTAL                                                               294     44    85%
 ```
 
 ## Características
