@@ -57,23 +57,34 @@ Os estão em desenvolvimento, mas já é possível ver a cobertura de testes.
 
 ```
 All checks passed!
-=============== test session starts ===================================
+================ test session starts =================
 platform linux -- Python 3.13.2, pytest-8.3.4, pluggy-1.5.0
 cachedir: .pytest_cache
 configfile: pyproject.toml
 testpaths: tests
-plugins: anyio-4.8.0, cov-6.0.0, asyncio-0.25.3
+plugins: order-1.3.0, anyio-4.8.0, cov-6.0.0, asyncio-0.25.3
 asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=session
-collected 27 items
+collected 38 items
 
-tests/unit/domain/entities/test_user.py::test_user_entities_creation PASSED
 tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_create_user PASSED
-tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_find_by_email PASSED
-tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_list_users PASSED
-tests/unit/infrastructure/security/test_password.py::test_password_hash PASSED
+tests/unit/presentation/controllers/test_create_user_user_controller.py::test_create_user_endpoint PASSED
+tests/unit/presentation/controllers/test_get_user_user_controller.py::test_get_user_success PASSED
+tests/unit/presentation/controllers/test_list_users_user_controller.py::test_list_users_endpoint PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_valid_data PASSED
+tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_success PASSED
+tests/unit/use_cases/user/test_get_user.py::test_get_user_use_case_success PASSED
+tests/unit/use_cases/user/test_list_users.py::test_list_users_use_case_success PASSED
+tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_find_by_email PASSED
+tests/unit/presentation/controllers/test_create_user_user_controller.py::test_create_user_endpoint_value_error PASSED
+tests/unit/presentation/controllers/test_get_user_user_controller.py::test_get_user_not_found PASSED
+tests/unit/presentation/controllers/test_list_users_user_controller.py::test_list_users_empty PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_invalid_name_characters PASSED
+tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_email_already_exists PASSED
+tests/unit/use_cases/user/test_get_user.py::test_get_user_use_case_user_not_found PASSED
+tests/unit/use_cases/user/test_list_users.py::test_list_users_use_case_empty_result PASSED
+tests/unit/infrastructure/repositories/test_sqlmodel_user_repository.py::test_list_users PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_short_name PASSED
+tests/unit/use_cases/user/test_list_users.py::test_list_users_use_case_exact_page_size PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_short_password PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_password_no_uppercase PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_password_no_digit PASSED
@@ -91,25 +102,25 @@ tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_s
 tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_uppercase PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_digit PASSED
 tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_special_character PASSED
-tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_success PASSED
-tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_email_already_exists PASSED
+tests/unit/domain/entities/test_user.py::test_user_entities_creation PASSED
+tests/unit/infrastructure/security/test_password.py::test_password_hash PASSED
 
 ---------- coverage: platform linux, python 3.13.2-final-0 -----------
 Name                                                              Stmts   Miss  Cover
 -------------------------------------------------------------------------------------
 src/app/__init__.py                                                   0      0   100%
-src/app/constants.py                                                 15      3    80%
+src/app/constants.py                                                 12      0   100%
 src/app/domain/__init__.py                                            0      0   100%
 src/app/domain/entities/__init__.py                                   3      0   100%
 src/app/domain/entities/user.py                                      14      0   100%
 src/app/domain/repositories/__init__.py                               0      0   100%
-src/app/domain/repositories/user_repository.py                       17      4    76%
+src/app/domain/repositories/user_repository.py                       13      0   100%
 src/app/infrastructure/__init__.py                                    0      0   100%
 src/app/infrastructure/config/__init__.py                             0      0   100%
 src/app/infrastructure/config/database.py                            12      3    75%
 src/app/infrastructure/config/settings.py                             8      0   100%
 src/app/infrastructure/dependencies/__init__.py                       0      0   100%
-src/app/infrastructure/dependencies/user_dependencies.py             15      4    73%
+src/app/infrastructure/dependencies/user_dependencies.py             11      0   100%
 src/app/infrastructure/repositories/__init__.py                       0      0   100%
 src/app/infrastructure/repositories/sqlmodel_user_repository.py      26      0   100%
 src/app/infrastructure/security/__init__.py                           0      0   100%
@@ -117,7 +128,7 @@ src/app/infrastructure/security/password.py                           6      0  
 src/app/main.py                                                       5      0   100%
 src/app/presentation/__init__.py                                      0      0   100%
 src/app/presentation/controllers/__init__.py                          0      0   100%
-src/app/presentation/controllers/user_controller.py                  30     13    57%
+src/app/presentation/controllers/user_controller.py                  30      0   100%
 src/app/presentation/schemas/__init__.py                              0      0   100%
 src/app/presentation/schemas/common/__init__.py                       0      0   100%
 src/app/presentation/schemas/common/pagination.py                    13      0   100%
@@ -126,13 +137,13 @@ src/app/presentation/schemas/user/request.py                         45      0  
 src/app/presentation/schemas/user/response.py                        10      0   100%
 src/app/use_cases/__init__.py                                         0      0   100%
 src/app/use_cases/interfaces/__init__.py                              0      0   100%
-src/app/use_cases/interfaces/use_case.py                              8      1    88%
+src/app/use_cases/interfaces/use_case.py                              7      0   100%
 src/app/use_cases/user/__init__.py                                    0      0   100%
 src/app/use_cases/user/create_user.py                                26      0   100%
-src/app/use_cases/user/get_user.py                                   18      3    83%
-src/app/use_cases/user/list_users.py                                 23      7    70%
+src/app/use_cases/user/get_user.py                                   18      0   100%
+src/app/use_cases/user/list_users.py                                 23      0   100%
 -------------------------------------------------------------------------------------
-TOTAL                                                               294     38    87%
+TOTAL                                                               282      3 99%                                                              294     38    87%
 ```
 
 ## Características
@@ -260,12 +271,18 @@ http://localhost:8000/docs
         │   └── security
         │       └── test_password.py
         ├── presentation
+        │   ├── controllers
+        │   │   ├── test_create_user_user_controller.py
+        │   │   ├── test_get_user_user_controller.py
+        │   │   └── test_list_users_user_controller.py
         │   └── schemas
         │       └── user
         │           └── test_request.py
         └── use_cases
             └── user
-                └── test_create_user.py
+                ├── test_create_user.py
+                ├── test_get_user.py
+                └── test_list_users.py
 ```
 
 ## Camadas da Clean Architecture
