@@ -56,8 +56,38 @@ Este projeto segue os princípios da Clean Architecture para manter a separaçã
 Os estão em desenvolvimento, mas já é possível ver a cobertura de testes.
 
 ```
+All checks passed!
+========================================================== test session starts ==========================================================
+platform linux -- Python 3.13.2, pytest-8.3.4, pluggy-1.5.0
+cachedir: .pytest_cache
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.8.0, cov-6.0.0, asyncio-0.25.3
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=auto
+collected 24 items
+
 tests/unit/domain/entities/test_user.py::test_user_entities_creation PASSED
 tests/unit/infrastructure/security/test_password.py::test_password_hash PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_valid_data PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_invalid_name_characters PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_short_name PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_short_password PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_password_no_uppercase PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_password_no_digit PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_create_request_password_no_special_character PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_empty PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_name_only PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_email_only PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_only PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_all_fields PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_invalid_name_characters PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_short_name PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_name_capitalization PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_invalid_email PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_short_password PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_uppercase PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_digit PASSED
+tests/unit/presentation/schemas/user/test_request.py::test_user_update_request_password_no_special_character PASSED
 tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_success PASSED
 tests/unit/use_cases/user/test_create_user.py::test_create_user_use_case_email_already_exists PASSED
 
@@ -89,7 +119,7 @@ src/app/presentation/schemas/__init__.py                              0      0  
 src/app/presentation/schemas/common/__init__.py                       0      0   100%
 src/app/presentation/schemas/common/pagination.py                    13      0   100%
 src/app/presentation/schemas/user/__init__.py                         0      0   100%
-src/app/presentation/schemas/user/request.py                         57     34    40%
+src/app/presentation/schemas/user/request.py                         45      0   100%
 src/app/presentation/schemas/user/response.py                        10      0   100%
 src/app/use_cases/__init__.py                                         0      0   100%
 src/app/use_cases/interfaces/__init__.py                              0      0   100%
@@ -99,7 +129,8 @@ src/app/use_cases/user/create_user.py                                26      0  
 src/app/use_cases/user/get_user.py                                   18      3    83%
 src/app/use_cases/user/list_users.py                                 23      7    70%
 -------------------------------------------------------------------------------------
-TOTAL                                                               306     86    72%
+TOTAL                                                               294     52    82%
+
 ```
 
 ## Características
