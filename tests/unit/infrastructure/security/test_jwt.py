@@ -40,11 +40,12 @@ def test_decode_token_valid():
 
 @pytest.mark.order(3)
 def test_decode_token_expired():
-    with freeze_time('2025-01-01 00:00:00'):
+    now_date = datetime.now(ZoneInfo('America/Sao_Paulo')).strftime('%Y-%m-%d')
+    with freeze_time(f'{now_date} 00:00:00'):
         sub = fake.uuid4()
         token = create_access_token(sub, timedelta(hours=1))
 
-    with freeze_time('2025-01-01 01:00:01'):
+    with freeze_time(f'{now_date} 01:00:00'):
         with pytest.raises(ValueError, match='Could not validate credentials'):
             decode_access_token(token)
 
