@@ -3,6 +3,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
+from app.infrastructure.dependencies.auth_dependencies import get_current_user
 from app.infrastructure.dependencies.user_dependencies import (
     get_create_user_use_case,
     get_get_user_use_case,
@@ -36,9 +37,14 @@ async def create_user(
         raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail=str(e))
 
 
-@router.get('/{user_id}/', response_model=UserResponse)
+@router.get(
+    '/{user_id}/',
+    response_model=UserResponse,
+    dependencies=[Depends(get_current_user)],
+)
 async def get_user(
-    user_id: UUID, use_case: GetUserUseCase = Depends(get_get_user_use_case)
+    user_id: UUID,
+    use_case: GetUserUseCase = Depends(get_get_user_use_case),
 ):
     data = await use_case.execute(input_data=GetUserInput(user_id=user_id))
 
@@ -53,7 +59,11 @@ async def get_user(
     )
 
 
-@router.get('/', response_model=PaginatedResponse[UserResponse])
+@router.get(
+    '/',
+    response_model=PaginatedResponse[UserResponse],
+    dependencies=[Depends(get_current_user)],
+)
 async def list_users(
     page: int = Query(1, ge=1, description='Page number'),
     page_size: int = Query(10, ge=1, le=100, description='Page size'),
