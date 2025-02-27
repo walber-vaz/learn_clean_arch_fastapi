@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
-from time import sleep
 from zoneinfo import ZoneInfo
 
 import pytest
 from faker import Faker
+from freezegun import freeze_time
 
 from app.infrastructure.security.jwt import (
     TokenPayload,
@@ -40,14 +40,13 @@ def test_decode_token_valid():
 
 @pytest.mark.order(3)
 def test_decode_token_expired():
-    subject = fake.uuid4()
-    expires = timedelta(seconds=1)
-    token = create_access_token(subject=subject, expires_delta=expires)
+    with freeze_time('2025-01-01 00:00:00'):
+        sub = fake.uuid4()
+        token = create_access_token(sub, timedelta(hours=1))
 
-    sleep(2)
-
-    with pytest.raises(ValueError, match='Could not validate credentials'):
-        decode_access_token(token)
+    with freeze_time('2025-01-01 01:00:01'):
+        with pytest.raises(ValueError, match='Could not validate credentials'):
+            decode_access_token(token)
 
 
 @pytest.mark.order(4)
