@@ -39,4 +39,4 @@ def decode_access_token(token: str):
         token_data = TokenPayload(**payload)
         return token_data
     except PyJWTError:
-        return ValueError('Could not validate credentials')
+        raise ValueError('Could not validate credentials')
