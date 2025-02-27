@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     ENVIRONMENT: Environment = Environment.LOCAL
     DATABASE_URL: str
     API_PREFIX: str = '/v1'
+    JWT_SECRET: str
+    JWT_EXPIRATION: int = 60
+    JWT_ALGORITHM: str = 'HS512'
 
 
 settings: Settings = Settings()
